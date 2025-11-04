@@ -1,5 +1,7 @@
 using MicroShop.ProductApi.Context;
 using Microsoft.EntityFrameworkCore;
+using AutoMapper;
+using MicroShop.ProductApi.DTOs.Mappings;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +20,11 @@ string mysqlConnection = builder.Configuration.GetConnectionString("DefaultConne
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseMySql(mysqlConnection, ServerVersion.AutoDetect(mysqlConnection)));
+
+builder.Services.AddAutoMapper(cfg =>
+{
+    cfg.AddProfile<MappingProfile>();
+});
 
 var app = builder.Build();
 
