@@ -2,6 +2,7 @@ using MicroShop.ProductApi.Context;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using MicroShop.ProductApi.DTOs.Mappings;
+using MicroShop.ProductApi.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +26,9 @@ builder.Services.AddAutoMapper(cfg =>
 {
     cfg.AddProfile<MappingProfile>();
 });
+
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
 var app = builder.Build();
 
