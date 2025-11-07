@@ -34,12 +34,7 @@ public class ProductService : IProductService
     ///     "description": "Caderno com 200 folhas",
     ///     "stock": 50,
     ///     "imageURL": "https://exemplo.com/imagens/caderno.jpg",
-    ///     "categoryId": 1,
-    ///     "category": {
-    ///       "categoryId": 1,
-    ///       "name": "Material Escolar",
-    ///       "products": [ "..." ]
-    ///     }
+    ///     "categoryId": 1
     ///   },
     ///   {
     ///     "productId": 102,
@@ -48,12 +43,7 @@ public class ProductService : IProductService
     ///     "description": "Fone com cancelamento de ruído",
     ///     "stock": 20,
     ///     "imageURL": "https://exemplo.com/imagens/fone.jpg",
-    ///     "categoryId": 2,
-    ///     "category": {
-    ///       "categoryId": 2,
-    ///       "name": "Eletrônicos",
-    ///       "products": [ "..." ]
-    ///     }
+    ///     "categoryId": 2
     ///   }
     /// ]
     /// </example>
@@ -81,12 +71,7 @@ public class ProductService : IProductService
     ///   "description": "Caderno com 200 folhas",
     ///   "stock": 50,
     ///   "imageURL": "https://exemplo.com/imagens/caderno.jpg",
-    ///   "categoryId": 1,
-    ///   "category": {
-    ///     "categoryId": 1,
-    ///     "name": "Material Escolar",
-    ///     "products": [ "..." ]
-    ///   }
+    ///   "categoryId": 1
     /// }
     /// </example>
     public async Task<ProductDTO?> GetProductById(int id)
