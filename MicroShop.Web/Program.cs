@@ -1,7 +1,17 @@
+using MicroShop.Web.Services;
+using MicroShop.Web.Services.Contracts;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddHttpClient("ProductApi", c =>
+{
+    c.BaseAddress = new Uri(builder.Configuration["ServiceUri:ProductApi"]);
+});
+
+builder.Services.AddScoped<IProductService, ProductService>();
 
 var app = builder.Build();
 
