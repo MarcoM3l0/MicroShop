@@ -8,7 +8,7 @@ public class CategoryService : ICategoryService
 {
     private readonly IHttpClientFactory _httpClientFactory;
     private readonly JsonSerializerOptions _options;
-    private const string apiEndpoint = "https://localhost:7186/api/Categories";
+    private const string apiEndpoint = "https://localhost:7186/api/Categories/";
 
     public CategoryService(IHttpClientFactory httpClientFactory)
     {

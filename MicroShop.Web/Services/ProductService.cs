@@ -1,5 +1,6 @@
 ﻿using MicroShop.Web.Models;
 using MicroShop.Web.Services.Contracts;
+using System.Diagnostics;
 using System.Text;
 using System.Text.Json;
 
@@ -9,7 +10,7 @@ public class ProductService : IProductService
 {
     private readonly IHttpClientFactory _httpClientFactory;
     private readonly JsonSerializerOptions _options;
-    private const string apiEndpoint = "https://localhost:7186/api/Products";
+    private const string apiEndpoint = "https://localhost:7186/api/Products/";
     private ProductViewModel productVM;
     private IEnumerable<ProductViewModel> productVMs;
 
@@ -45,6 +46,7 @@ public class ProductService : IProductService
     public async Task<ProductViewModel> GetProductById(int productId)
     {
         var client = _httpClientFactory.CreateClient("ProductApi");
+
 
         using (var response = await client.GetAsync(apiEndpoint + productId))
         {
