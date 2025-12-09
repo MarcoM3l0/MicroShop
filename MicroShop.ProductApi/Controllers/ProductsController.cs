@@ -69,16 +69,14 @@ public class ProductsController : ControllerBase
         }
     }
 
-    [HttpPut("{id}")]
+    [HttpPut()]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult> Put(int id, [FromBody] ProductDTO productDto)
+    public async Task<ActionResult> Put([FromBody] ProductDTO productDto)
     {
         try
         {
-            if (id != productDto.ProductId) return NotFound("Produto não encontrado");
             if (productDto is null) return BadRequest("Dados inválidos");
             await _productService.UpdateProduct(productDto);
             return Ok(productDto);

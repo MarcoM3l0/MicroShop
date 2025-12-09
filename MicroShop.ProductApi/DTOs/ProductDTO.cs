@@ -1,5 +1,6 @@
 ﻿using MicroShop.ProductApi.Models;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace MicroShop.ProductApi.DTOs;
 
@@ -25,6 +26,8 @@ public class ProductDTO
     public long Stock { get; set; }
     public string? ImageURL { get; set; }
 
+    public string? CategoryName { get; set; }
     public int CategoryId { get; set; }
+    [JsonIgnore]
     public Category? Category { get; set; }
 }
