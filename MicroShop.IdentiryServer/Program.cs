@@ -1,5 +1,6 @@
 using MicroShop.IdentiryServer.Configuration;
 using MicroShop.IdentiryServer.Data;
+using MicroShop.IdentiryServer.SeedDatabase;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -36,6 +37,8 @@ var builderIdentityServer = builder.Services.AddIdentityServer(options =>
 
 builderIdentityServer.AddDeveloperSigningCredential();
 
+builder.Services.AddScoped<IDatabaseSeedInitializer, DatabaseIdentityServerInitializer>();
+
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
@@ -53,8 +56,20 @@ app.UseIdentityServer();
 
 app.UseAuthorization();
 
+SeedDatabaseIdentity(app);
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+void SeedDatabaseIdentity(IApplicationBuilder app)
+{
+    using (var scope = app.ApplicationServices.CreateScope())
+    {
+        var initRolesUsers = scope.ServiceProvider.GetService<IDatabaseSeedInitializer>();
+        initRolesUsers.InitializeSeedRoles();
+        initRolesUsers.InitializeSeedUsers();
+    }
+}
