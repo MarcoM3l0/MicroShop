@@ -1,10 +1,13 @@
 ﻿using MicroShop.ProductApi.DTOs;
+using MicroShop.ProductApi.Roles;
 using MicroShop.ProductApi.Services.interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MicroShop.ProductApi.Controllers;
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 public class ProductsController : ControllerBase
 {
     private readonly IProductService _productService;
@@ -91,6 +94,7 @@ public class ProductsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [Authorize(Roles = Role.AdminRole)]
     public async Task<ActionResult> Delete(int id)
     {
         try

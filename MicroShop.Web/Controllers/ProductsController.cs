@@ -1,5 +1,7 @@
 ﻿using MicroShop.Web.Models;
+using MicroShop.Web.Roles;
 using MicroShop.Web.Services.Contracts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Diagnostics;
@@ -33,6 +35,7 @@ public class ProductsController : Controller
     }
 
     [HttpPost]
+    [Authorize]
     public async Task<IActionResult> CreateProduct(ProductViewModel productVM)
     {
         if (ModelState.IsValid)
@@ -66,6 +69,7 @@ public class ProductsController : Controller
     }
 
     [HttpPost]
+    [Authorize]
     public async Task<IActionResult> UpdateProduct(ProductViewModel productVM)
     {
         if (ModelState.IsValid)
@@ -78,6 +82,7 @@ public class ProductsController : Controller
     }
 
     [HttpGet]
+    [Authorize]
     public async Task<IActionResult> DeleteProduct(int id)
     {
         var result = await _productService.GetProductById(id);
@@ -87,6 +92,7 @@ public class ProductsController : Controller
     }
 
     [HttpPost, ActionName("DeleteProduct")]
+    [Authorize(Roles = Role.AdminRole)]
     public async Task<IActionResult> DeleteConfirmed(int id)
     {
         var result = await _productService.DeleteProduct(id);
