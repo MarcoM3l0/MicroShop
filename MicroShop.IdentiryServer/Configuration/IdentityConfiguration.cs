@@ -41,8 +41,8 @@ public class IdentityConfiguration
                 ClientId = "MicroShop",
                 ClientSecrets = { new Secret("marcomelo#2@01MarcoM3L0".Sha256()) },
                 AllowedGrantTypes = GrantTypes.Code,
-                RedirectUris = { "https://localhost:7203/signin-oidc" },// login
-                PostLogoutRedirectUris = { "https://localhost:7203/signout-callback-oidc" }, // logout
+                RedirectUris = { "https://localhost:7095/signin-oidc" },// login
+                PostLogoutRedirectUris = { "https://localhost:7095/signout-callback-oidc" }, // logout
                 AllowedScopes = new List<string>
                 {
                     IdentityServerConstants.StandardScopes.OpenId,
