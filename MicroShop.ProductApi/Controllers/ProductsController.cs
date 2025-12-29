@@ -57,6 +57,7 @@ public class ProductsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [Authorize(Roles = Role.AdminRole)]
     public async Task<ActionResult> Post([FromBody] ProductDTO productDto)
     {
         try
@@ -76,6 +77,7 @@ public class ProductsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [Authorize(Roles = Role.AdminRole)]
     public async Task<ActionResult> Put([FromBody] ProductDTO productDto)
     {
         try

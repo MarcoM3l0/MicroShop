@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Diagnostics;
 
 namespace MicroShop.Web.Controllers;
+
+[Authorize(Roles = Role.AdminRole)]
 public class ProductsController : Controller
 {
     private readonly IProductService _productService;
@@ -35,7 +37,6 @@ public class ProductsController : Controller
     }
 
     [HttpPost]
-    [Authorize]
     public async Task<IActionResult> CreateProduct(ProductViewModel productVM)
     {
         if (ModelState.IsValid)
@@ -69,7 +70,6 @@ public class ProductsController : Controller
     }
 
     [HttpPost]
-    [Authorize]
     public async Task<IActionResult> UpdateProduct(ProductViewModel productVM)
     {
         if (ModelState.IsValid)
@@ -82,7 +82,6 @@ public class ProductsController : Controller
     }
 
     [HttpGet]
-    [Authorize]
     public async Task<IActionResult> DeleteProduct(int id)
     {
         var result = await _productService.GetProductById(id, await GetAccessToken());
@@ -92,7 +91,6 @@ public class ProductsController : Controller
     }
 
     [HttpPost, ActionName("DeleteProduct")]
-    [Authorize(Roles = Role.AdminRole)]
     public async Task<IActionResult> DeleteConfirmed(int id)
     {
         var result = await _productService.DeleteProduct(id, await GetAccessToken());
