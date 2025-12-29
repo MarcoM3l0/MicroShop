@@ -19,6 +19,7 @@ builder.Services.AddHttpClient("CartApi", c =>
 
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<ICouponService, CouponService>();
 builder.Services.AddScoped<ICartService, CartService>();
 
 builder.Services.AddAuthentication(options =>

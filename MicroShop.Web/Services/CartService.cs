@@ -1,16 +1,18 @@
 ﻿using MicroShop.Web.Models;
+using MicroShop.Web.Services.Contracts;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 
 namespace MicroShop.Web.Services;
 
-public class CartService
+public class CartService : ICartService
 {
     private readonly IHttpClientFactory _clientFactory;
     private readonly JsonSerializerOptions? _options;
-    private const string apiEndpoint = "https://localhost:7043/api/cart";
+    private const string apiEndpoint = "/api/cart";
     private CartViewModel cartVM = new CartViewModel();
+    private CartHeaderViewModel cartHeaderVM = new CartHeaderViewModel();
 
     public CartService(IHttpClientFactory clientFactory)
     {
@@ -176,5 +178,6 @@ public class CartService
         return cartHeaderVM;
 
     }
+
 
 }
