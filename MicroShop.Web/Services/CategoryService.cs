@@ -1,5 +1,6 @@
 ﻿using MicroShop.Web.Models;
 using MicroShop.Web.Services.Contracts;
+using System.Net.Http.Headers;
 using System.Text.Json;
 
 namespace MicroShop.Web.Services;
@@ -19,9 +20,11 @@ public class CategoryService : ICategoryService
         };
     }
 
-    public async Task<IEnumerable<CategoryViewModel>> GetAllCategories()
+    public async Task<IEnumerable<CategoryViewModel>> GetAllCategories(string token)
     {
         var client = _httpClientFactory.CreateClient("ProductApi");
+        client.DefaultRequestHeaders.Authorization =
+            new AuthenticationHeaderValue("Bearer", token);
 
         IEnumerable<CategoryViewModel> categoryVMs;
 

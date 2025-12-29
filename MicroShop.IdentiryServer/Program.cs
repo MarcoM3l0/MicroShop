@@ -1,6 +1,8 @@
+using Duende.IdentityServer.Services;
 using MicroShop.IdentiryServer.Configuration;
 using MicroShop.IdentiryServer.Data;
 using MicroShop.IdentiryServer.SeedDatabase;
+using MicroShop.IdentiryServer.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -38,6 +40,7 @@ var builderIdentityServer = builder.Services.AddIdentityServer(options =>
 builderIdentityServer.AddDeveloperSigningCredential();
 
 builder.Services.AddScoped<IDatabaseSeedInitializer, DatabaseIdentityServerInitializer>();
+builder.Services.AddScoped<IProfileService, ProfileAppService>();
 
 var app = builder.Build();
 
