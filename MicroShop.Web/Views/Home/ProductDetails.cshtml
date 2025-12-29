@@ -1,0 +1,25 @@
+﻿@model MicroShop.Web.Models.ProductViewModel
+
+<form method="post">
+    <input asp-for="ProductId" hidden />
+    <h3 class="mb-5">Detalhe do Produto</h3>
+    <div class="row">
+        <div class="col-md-4">
+            <h3>@Model.Name</h3>
+            <p class="mb-4">@Model.Description</p>
+            <p class="mb-4 text-black">
+                <b>
+                    @Model.Price.ToString("c")&nbsp;(@Model.Stock items )
+                </b>
+            </p>
+            <div class="row">
+                <div class="col-5 col-md-5 mb-5">
+                    <a asp-action="Index" class="btn btn-outline-info">Voltar</a>
+                </div>
+                <div class="col-5 col-md-5">
+                    <button type="submit" class="btn btn-outline-success">Adicionar ao cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
