@@ -1,25 +1,21 @@
-using MicroShop.ProductApi.Context;
-using MicroShop.ProductApi.DTOs.Mappings;
-using MicroShop.ProductApi.Repositories;
-using MicroShop.ProductApi.Services.concrete;
-using MicroShop.ProductApi.Services.interfaces;
+using MicroShop.CartApi.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Add services to the container.
 
-builder.Services.AddControllers().AddJsonOptions(x =>
-            x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+builder.Services.AddControllers();
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
-builder.Services.AddSwaggerGen( c =>
+builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "MicroShop.ProductApi", Version = "v1" });
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "MicroShop.CartApi", Version = "v1" });
 
-    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme 
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Description = @"Enter 'Bearer' [space] and your token!",
         Name = "Authorization",
@@ -28,7 +24,7 @@ builder.Services.AddSwaggerGen( c =>
         Scheme = "Bearer"
     });
 
-    c.AddSecurityRequirement(new OpenApiSecurityRequirement 
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
     {
         {
             new OpenApiSecurityScheme
@@ -52,20 +48,6 @@ string message = "A string de conexão 'DefaultConnection' não foi encontrada ou 
 string mysqlConnection = builder.Configuration.GetConnectionString("DefaultConnection")
     ?? throw new ArgumentNullException(nameof(mysqlConnection), message);
 
-
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseMySql(mysqlConnection, ServerVersion.AutoDetect(mysqlConnection)));
-
-builder.Services.AddAutoMapper(cfg =>
-{
-    cfg.AddProfile<MappingProfile>();
-});
-
-builder.Services.AddScoped<IProductRepository, ProductRepository>();
-builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
-builder.Services.AddScoped<IProductService, ProductService>();
-builder.Services.AddScoped<ICategoryService, CategoryService>();
-
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("CorsPolicy",
@@ -86,7 +68,11 @@ builder.Services.AddAuthentication("Bearer")
         };
     });
 
-builder.Services.AddAuthorization(options => {
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseMySql(mysqlConnection, ServerVersion.AutoDetect(mysqlConnection)));
+
+builder.Services.AddAuthorization(options =>
+{
 
     options.AddPolicy("ApiScope", policy =>
     {
@@ -115,4 +101,3 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-

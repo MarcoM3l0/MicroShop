@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{26E8
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroShop.IdentiryServer", "MicroShop.IdentiryServer\MicroShop.IdentiryServer.csproj", "{AB2CAAB5-DC10-4A17-985F-E123BC69226B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroShop.CartApi", "MicroShop.CartApi\MicroShop.CartApi.csproj", "{030F8BEB-5236-42FE-B3A1-7C93F5EF0DF9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{AB2CAAB5-DC10-4A17-985F-E123BC69226B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB2CAAB5-DC10-4A17-985F-E123BC69226B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB2CAAB5-DC10-4A17-985F-E123BC69226B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{030F8BEB-5236-42FE-B3A1-7C93F5EF0DF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{030F8BEB-5236-42FE-B3A1-7C93F5EF0DF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{030F8BEB-5236-42FE-B3A1-7C93F5EF0DF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{030F8BEB-5236-42FE-B3A1-7C93F5EF0DF9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,6 +45,7 @@ Global
 		{1E8B40BA-C8ED-4167-8C05-65BAF977C334} = {26E870C8-8338-448D-B3E3-566F592EEAC4}
 		{DA237C94-DFCC-4E2F-981D-C91BB823A011} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{AB2CAAB5-DC10-4A17-985F-E123BC69226B} = {26E870C8-8338-448D-B3E3-566F592EEAC4}
+		{030F8BEB-5236-42FE-B3A1-7C93F5EF0DF9} = {26E870C8-8338-448D-B3E3-566F592EEAC4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D47AC402-7ACC-4C92-888D-F5BD869F79D4}
