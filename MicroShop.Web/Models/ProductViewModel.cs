@@ -18,4 +18,6 @@ public class ProductViewModel
     public string? CategoryName { get; set; }
     [Display(Name = "Categoria")]
     public int CategoryId { get; set; }
+    [Range(1, 100)]
+    public int Quantity { get; set; } = 1;
 }
