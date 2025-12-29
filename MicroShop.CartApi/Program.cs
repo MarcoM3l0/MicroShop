@@ -1,4 +1,6 @@
 using MicroShop.CartApi.Context;
+using MicroShop.CartApi.DTOs.Mappings;
+using MicroShop.CartApi.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -41,6 +43,13 @@ builder.Services.AddSwaggerGen(c =>
             new List<string>()
         }
     });
+});
+
+builder.Services.AddScoped<ICartRepository, CartRepository>();
+
+builder.Services.AddAutoMapper(cfg =>
+{
+    cfg.AddProfile<MappingProfile>();
 });
 
 string message = "A string de conexão 'DefaultConnection' não foi encontrada ou está inválida.";
